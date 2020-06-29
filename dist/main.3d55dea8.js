@@ -11214,13 +11214,20 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//html初始化
+var html = "\n<section id=\"app1\">\n        <div class=\"output\">\n            <span id=\"number\">100</span>\n        </div>\n        <div class=\"actions\">\n            <button id=\"add1\">+1</button>\n            <button id=\"minus1\">-1</button>\n            <button id=\"mul2\">*2</button>\n            <button id=\"divide2\">\xF72</button>\n        </div>\n</section>\n";
+var $element = (0, _jquery.default)(html).appendTo((0, _jquery.default)('body>.page')); //获取元素
+
 var $button1 = (0, _jquery.default)('#add1');
 var $button2 = (0, _jquery.default)('#minus1');
 var $button3 = (0, _jquery.default)('#mul2');
 var $button4 = (0, _jquery.default)('#divide2');
-var $number = (0, _jquery.default)('#number');
-var n = localStorage.getItem("n");
-$number.text(n || 100);
+var $number = (0, _jquery.default)('#number'); //数据初始化
+
+var n = localStorage.getItem("n"); //数据渲染到页面
+
+$number.text(n || 100); //绑定点击事件
+
 $button1.on('click', function () {
   var n = parseInt($number.text());
   n += 1;
@@ -11255,14 +11262,18 @@ require("./app2.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var html = "\n<section id=\"app2\">\n        <ol class=\"tab-bar\">\n            <li>1</li>\n            <li>2</li>\n        </ol>\n        <ol class=\"tab-content\">\n            <li>\u5185\u5BB91</li>\n            <li>\u5185\u5BB92</li>\n        </ol>\n    </section>\n";
+var $element = (0, _jquery.default)(html).appendTo((0, _jquery.default)('body>.page'));
 var $tabBar = (0, _jquery.default)('#app2 .tab-bar');
 var $tabContent = (0, _jquery.default)('#app2 .tab-content');
+var index = localStorage.getItem('app2.index') || 0;
 $tabBar.on("click", "li", function (e) {
   var $li = (0, _jquery.default)(e.currentTarget);
   var index = $li.index();
+  localStorage.setItem('app2.index', index);
   $tabContent.children().eq(index).addClass('active').siblings().removeClass('active');
 });
-$tabBar.children().eq(0).trigger('click');
+$tabBar.children().eq(index).trigger('click');
 },{"jquery":"juYr","./app2.css":"AQoi"}],"y8lT":[function(require,module,exports) {
 "use strict";
 
@@ -11272,9 +11283,19 @@ require("./app3.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var html = "\n<section id=\"app3\">\n        <div class=\"square\"></div>\n    </section>\n";
+var $element = (0, _jquery.default)(html).appendTo((0, _jquery.default)('body>.page'));
 var $square = (0, _jquery.default)('#app3 .square');
+var active = localStorage.getItem('app3.active') === 'yes';
+$square.toggleClass('active', active);
 $square.on('click', function () {
-  $square.toggleClass('active');
+  if ($square.hasClass('active')) {
+    $square.removeClass('active');
+    localStorage.setItem('app3.active', 'no');
+  } else {
+    $square.addClass('active');
+    localStorage.setItem('app3.active', 'yes');
+  }
 });
 },{"jquery":"juYr","./app3.css":"AQoi"}],"eWpN":[function(require,module,exports) {
 "use strict";
@@ -11285,7 +11306,9 @@ require("./app4.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//链式操作
+var html = "\n<section id=\"app4\">\n        <div class=\"circle\"></div>\n    </section>\n";
+var $element = (0, _jquery.default)(html).appendTo((0, _jquery.default)('body>.page')); //链式操作
+
 var $circle = (0, _jquery.default)("#app4 .circle");
 $circle.on("mouseenter", function () {
   $circle.addClass('active');
@@ -11307,4 +11330,4 @@ require("./app3.js");
 
 require("./app4.js");
 },{"./reset.css":"AQoi","./global.css":"AQoi","./app1.js":"US5u","./app2.js":"vZ5o","./app3.js":"y8lT","./app4.js":"eWpN"}]},{},["epB2"], null)
-//# sourceMappingURL=main.9dda1f4d.js.map
+//# sourceMappingURL=main.3d55dea8.js.map

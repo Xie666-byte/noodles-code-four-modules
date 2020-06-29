@@ -47,9 +47,6 @@ body >.page>section{
 #app2 .tab-content>li.active{
     display: block;
 }
-#app3{
-
-}
 #app3 .square{
     border: 1px solid gray;
     width: 10vw;
@@ -83,4 +80,4 @@ body >.page>section{
     animation: change 1s infinite alternate linear;
 }
 
-/*# sourceMappingURL=/main.1f19ae8e.css.map */
+/*# sourceMappingURL=main.c150d88d.css.map */
